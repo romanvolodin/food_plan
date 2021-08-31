@@ -99,3 +99,13 @@ def add_ingredient_prices(recipe, ingredient_prices):
             if ingredient["name"] == priced_ingredient["name"]:
                 ingredient["price"] = priced_ingredient["price"]
     return priced_recipe
+
+
+def print_shopping_list(menu):
+    ingredients = []
+    for _, meals in menu.items():
+        for recipe in meals:
+            for ingredient in recipe["extendedIngredients"]:
+                ingredients.append(ingredient)
+    ingredient_amounts = sum_ingredient_amount(ingredients)
+    # TODO: add prices
