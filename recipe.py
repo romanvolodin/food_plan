@@ -17,3 +17,12 @@ def fetch_week_recipes(api_key):
     )
     response.raise_for_status()
     return response.json()["week"]
+
+
+def fetch_recipe(api_key, recipe_id, include_nutrition=False):
+    response = requests.get(
+        f"https://api.spoonacular.com/recipes/{recipe_id}/information",
+        params={"includeNutrition": include_nutrition, "apiKey": api_key}
+    )
+    response.raise_for_status()
+    return response.json()
