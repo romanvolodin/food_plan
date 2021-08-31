@@ -45,3 +45,11 @@ def create_week_menu(api_key):
             priced_recipe = add_ingredient_prices(recipe, ingredient_prices)
         week_menu[date].append(priced_recipe)
     return week_menu
+
+
+def print_menu(menu):
+    for date, meals in menu.items():
+        print(date)
+        for recipe in meals:
+            print(" ", recipe["title"])
+        print()
