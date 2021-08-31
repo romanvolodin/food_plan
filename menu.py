@@ -35,12 +35,13 @@ def parse_date(iso_date):
 def create_week_menu(api_key):
     menu = fetch_week_recipes(api_key)
     week_menu = {}
-    for week_day, day_menu in menu.items():
-        week_menu[week_day] = []
+    for date_offset, (_, day_menu) in enumerate(menu.items(), start=1):
+        date = get_date(date_offset).isoformat()
+        week_menu[date] = []
         for recipe in day_menu["meals"]:
             id = recipe["id"]
             recipe = fetch_recipe(api_key, id)
             ingredient_prices = fetch_recipe_price_breakdown(api_key, id)
             priced_recipe = add_ingredient_prices(recipe, ingredient_prices)
-        week_menu[week_day].append(priced_recipe)
+        week_menu[date].append(priced_recipe)
     return week_menu
