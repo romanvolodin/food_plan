@@ -43,7 +43,7 @@ def create_week_menu(api_key):
             recipe = fetch_recipe(api_key, id)
             ingredient_prices = fetch_recipe_price_breakdown(api_key, id)
             priced_recipe = add_ingredient_prices(recipe, ingredient_prices)
-        week_menu[date].append(priced_recipe)
+            week_menu[date].append(priced_recipe)
     return week_menu
 
 
