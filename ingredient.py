@@ -1,3 +1,6 @@
+import copy
+
+
 def convert_solid_amount_to_grams(amount, unit):
     if unit == "g":
         return amount
@@ -23,7 +26,7 @@ def convert_solid_amount_to_grams(amount, unit):
         return amount * 330
     if "handful" in unit:
         return amount * 100
-    #garlic
+    # garlic
     if "clove" in unit:
         return amount * 3
     if "head" in unit:
@@ -86,3 +89,13 @@ def sum_ingredient_amount(ingredients):
             continue
         ingredient_amounts[ingredient_name] = {"amount": amount, "unit": unit}
     return ingredient_amounts
+
+
+def add_ingredient_prices(recipe, ingredient_prices):
+    priced_recipe = copy.deepcopy(recipe)
+    for ingredient in priced_recipe["extendedIngredients"]:
+        ingredient["price"] = 0
+        for priced_ingredient in ingredient_prices:
+            if ingredient["name"] == priced_ingredient["name"]:
+                ingredient["price"] = priced_ingredient["price"]
+    return priced_recipe

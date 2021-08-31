@@ -34,4 +34,4 @@ def fetch_recipe_price_breakdown(api_key, recipe_id):
         params={"apiKey": api_key}
     )
     response.raise_for_status()
-    return response.json()
+    return response.json()["ingredients"]
